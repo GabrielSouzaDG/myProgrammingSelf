@@ -1,0 +1,71 @@
+<meta charset = UTF-8>
+
+<input/><!--creates a box to input data-->
+
+<button>Escolha um numero entre 1 e 10</button><!--creates button-->
+
+
+<script>
+function sorteia (){ 
+	return Math.round(Math.random()*10);//picks a random number between 1 and 10
+}
+function sorteiaN (quantidade){
+var segredos = [];
+var numero = 1
+while (numero<= quantidade){//keeps picking random numbers
+	var nAleatorio = sorteia();
+	var achou = false;
+	if (nAleatorio !== 0){
+		for(var posicao = 0; posicao < segredos.length; posicao++) {//checks if there are already all the random numbers
+
+                     if(segredos[posicao] == nAleatorio){
+                           achou = true;
+                           break;
+                       }
+					}
+	
+	if(achou == false){//keeps picking random numbers until there are all of them
+	segredos.push(nAleatorio);
+		
+	numero++;
+			}
+		}
+	}
+	return segredos;//returns the 5 numbers chosen by the machine
+} 
+var segredos = [];//an array to insert the chosen numbers
+	segredos.push(sorteia);
+    segredos.push(sorteia);
+    segredos.push(sorteia);
+    segredos.push(sorteia);
+    segredos.push(sorteia);
+var segredos = sorteiaN(5);
+
+
+   	 	console.log(segredos);
+var input = document.querySelector("input");//uses input in JS
+		input.focus();
+	function verifica(){//checks if the user already inputed one number
+var achou = false;//defines that before a number is inputed the var will be false
+	for (var posicao = 0; posicao < segredos.length; posicao++) {
+
+	if(input.value == segredos[posicao]){//if the number that the user input is one of the 5 chosen, the user wins the guessing game
+			alert("ACERTOU!")
+			achou = true;
+			break;
+
+	}
+}
+	if (achou == false) {	//if they dont guess it right, the user loses and the code generates 5 new numbers
+		alert("ERROU!")}
+
+
+		input.value="";//defines a clear input field if the user fails
+		input.focus();
+}
+var button = document.querySelector("button");//uses button in js
+
+
+button.onclick = verifica;//activates the verification at the click of the button
+
+</script>
